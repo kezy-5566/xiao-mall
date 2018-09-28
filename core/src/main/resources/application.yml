@@ -1,0 +1,83 @@
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+# ===================================================================
+# server config
+# ===================================================================
+server:
+  port: 8787
+  tomcat:
+    uri-encoding: utf-8
+    max-threads: 1000
+    min-spare-threads: 30
+
+# ===================================================================
+# spring config
+# ===================================================================
+spring:
+  # 环境 dev(开发)|test(测试)|prod(生产)
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 10MB
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: false
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.enable_lazy_load_no_trans: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+#  redis:
+#    timeout: 5000ms
+#    lettuce:
+#      pool:
+#        # 最大活跃链接数 默认8
+#        max-active: 8
+#        # 当连接池耗尽时，在抛出异常之前，连接分配应阻塞的最大时间量。使用负值无限期地阻塞。
+#        max-wait: -1ms
+#        # 最大空闲连接数 默认8
+#        max-idle: 8
+#        # 最小空闲连接数 默认0
+#        min-idle: 0
+
+# ===================================================================
+# druid config
+# druid alibaba database connection pool
+# ===================================================================
+druid:
+  # 下面为连接池的补充设置，应用到上面所有数据源中
+  # 初始化大小，最小空闲连接数，最大活跃连接数
+  initialSize: 1
+  minIdle: 3
+  maxActive: 20
+  # 配置获取连接等待超时的时间，单位是毫秒
+  maxWait: 60000
+  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+  timeBetweenEvictionRunsMillis: 60000
+  # 配置一个连接在池中最小生存的时间，单位是毫秒
+  minEvictableIdleTimeMillis: 30000
+  validationQuery: select 1
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  # 打开PSCache，并且指定每个连接上PSCache的大小
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 20
+  # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+  filters: stat,wall,slf4j
+  # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+  connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  # 合并多个DruidDataSource的监控数据
+  #useGlobalDataSourceStat: true

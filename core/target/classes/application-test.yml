@@ -1,0 +1,23 @@
+# ===================================================================
+# Spring Boot configuration for the "test" profile.
+# This configuration overrides the application.yml file.
+# ===================================================================
+
+# ===================================================================
+# spring config
+# ===================================================================
+spring:
+  redis:
+    port: 6397
+    database: 2
+    host: 192.168.1.188
+    password: passwd_redis
+
+# ===================================================================
+# druid config
+# druid alibaba database connection pool
+# ===================================================================
+druid:
+  url: jdbc:mysql://127.0.0.1:3306/mat_3.0.0?useUnicode=true&useSSL=false&characterEncoding=UTF-8
+  username: root
+  password: local-2018
