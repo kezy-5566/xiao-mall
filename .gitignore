@@ -1,0 +1,10 @@
+# ignore idea project file
+*.ipr
+*.iml
+*.log
+*.class
+*.idea
+*.versionsBackup
+.maven/
+.idea/
+target/
