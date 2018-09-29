@@ -1,5 +1,6 @@
 package xyz.vimtool.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -37,6 +38,7 @@ public class User {
      * 这里JoinTable可以不添加，
      * 不添加会根据ManyToMany自己增加中间表；添加时便于自己命名
      */
+    @JSONField(serialize = false)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

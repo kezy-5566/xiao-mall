@@ -12,7 +12,7 @@ import xyz.vimtool.response.UserRes;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2018-09-27T17:51:46+0800",
+    date = "2018-09-29T14:44:24+0800",
     comments = "version: 1.3.0.Beta1, compiler: javac, environment: Java 1.8.0_172 (Oracle Corporation)"
 )
 @Component

@@ -1,5 +1,6 @@
 package xyz.vimtool.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Role {
     @Column(name = "description")
     private String description;
 
+    @JSONField(serialize = false)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "role_permission",
             joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},

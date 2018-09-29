@@ -39,18 +39,18 @@ spring:
       hibernate.enable_lazy_load_no_trans: false
       hibernate.cache.use_second_level_cache: false
       hibernate.cache.use_query_cache: false
-#  redis:
-#    timeout: 5000ms
-#    lettuce:
-#      pool:
-#        # 最大活跃链接数 默认8
-#        max-active: 8
-#        # 当连接池耗尽时，在抛出异常之前，连接分配应阻塞的最大时间量。使用负值无限期地阻塞。
-#        max-wait: -1ms
-#        # 最大空闲连接数 默认8
-#        max-idle: 8
-#        # 最小空闲连接数 默认0
-#        min-idle: 0
+  redis:
+    timeout: 5000ms
+    lettuce:
+      pool:
+        # 最大活跃链接数 默认8
+        max-active: 8
+        # 当连接池耗尽时，在抛出异常之前，连接分配应阻塞的最大时间量。使用负值无限期地阻塞。
+        max-wait: -1ms
+        # 最大空闲连接数 默认8
+        max-idle: 8
+        # 最小空闲连接数 默认0
+        min-idle: 0
 
 # ===================================================================
 # druid config
