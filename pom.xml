@@ -95,6 +95,7 @@
             <version>8.0.12</version>
         </dependency>
 
+        <!-- 数据库连接池 -->
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -109,6 +110,7 @@
             <version>1</version>
         </dependency>
 
+        <!-- 代码精简 -->
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -117,6 +119,7 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- 对象映射 -->
         <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-jdk8 -->
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -131,6 +134,7 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- 权限控制 -->
         <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -138,6 +142,7 @@
             <version>1.4.0</version>
         </dependency>
 
+        <!-- token -->
         <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -152,6 +157,8 @@
             <version>1.2.49</version>
         </dependency>
 
+
+        <!-- swagger配置api -->
         <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
         <dependency>
             <groupId>io.springfox</groupId>

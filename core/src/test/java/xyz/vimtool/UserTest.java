@@ -1,6 +1,5 @@
 package xyz.vimtool;
 
-import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -51,7 +50,7 @@ public class UserTest {
     @Test
     public void user() {
         User user = userService.getByPhone("15109269725");
-        String s = JSONObject.toJSONString(user);
-        System.out.println(s);
+//        String s = JSONObject.toJSONString(user);
+        System.out.println(user.getId());
     }
 }

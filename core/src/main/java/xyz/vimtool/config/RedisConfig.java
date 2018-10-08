@@ -1,6 +1,7 @@
 package xyz.vimtool.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
+import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.time.Duration;
 
 /**
- * Redis配置类
+ * Redis配置类(CachingConfigurerSupport可继承也可不继承)
  *
  * @author  zhangzheng
  * @version 1.0.0
@@ -34,8 +35,9 @@ public class RedisConfig {
      */
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory factory) {
-        // todo 自定义序列化，使用fastjson序列化时，反序列化有bug，待修复
-        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
+        // 自定义序列化，使用fastjson序列化时，使用GenericFastJsonRedisSerializer而非FastJsonRedisSerializer，避免反序列化bug
+        RedisCacheConfiguration config = RedisCacheConfiguration
+                .defaultCacheConfig()
                 .entryTtl(Duration.ofMinutes(5))
                 .serializeKeysWith(
                         RedisSerializationContext
@@ -45,7 +47,7 @@ public class RedisConfig {
                 .serializeValuesWith(
                         RedisSerializationContext
                                 .SerializationPair
-                                .fromSerializer(new FastJsonRedisSerializer<>(Object.class))
+                                .fromSerializer(new GenericFastJsonRedisSerializer())
                 )
                 .disableCachingNullValues();
         return RedisCacheManager.builder(factory)

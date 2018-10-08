@@ -31,7 +31,7 @@ import java.util.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Entry.class)
-public class InitDatabaseTest {
+public class InitDatabase {
 
     @Inject
     private PermissionService permissionService;

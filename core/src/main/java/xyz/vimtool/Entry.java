@@ -33,8 +33,6 @@ public class Entry {
             File file = new File("flag.exit");
             while (!file.exists()) {
                 try {
-
-
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

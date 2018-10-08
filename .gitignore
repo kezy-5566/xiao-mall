@@ -8,3 +8,4 @@
 .maven/
 .idea/
 target/
+flag.pid
