@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.vimtool.bean.Permission;
-import xyz.vimtool.commons.response.HttpResponse;
+import xyz.vimtool.response.HttpResponse;
 import xyz.vimtool.mapper.PermissionMapper;
 import xyz.vimtool.response.PermissionRes;
 import xyz.vimtool.service.PermissionService;

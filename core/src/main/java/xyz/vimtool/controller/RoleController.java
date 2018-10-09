@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.vimtool.bean.Role;
-import xyz.vimtool.commons.response.HttpResponse;
+import xyz.vimtool.response.HttpResponse;
 import xyz.vimtool.mapper.RoleMapper;
 import xyz.vimtool.response.RoleRes;
 import xyz.vimtool.service.RoleService;

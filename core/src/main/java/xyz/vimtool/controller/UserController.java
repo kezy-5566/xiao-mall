@@ -1,5 +1,7 @@
 package xyz.vimtool.controller;
 
+import com.google.code.kaptcha.Constants;
+import com.google.code.kaptcha.impl.DefaultKaptcha;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -7,16 +9,22 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import xyz.vimtool.bean.Role;
 import xyz.vimtool.bean.User;
-import xyz.vimtool.commons.response.Assert;
-import xyz.vimtool.commons.response.HttpResponse;
-import xyz.vimtool.commons.response.MarkCode;
+import xyz.vimtool.response.Assert;
+import xyz.vimtool.response.ExceptionUtils;
+import xyz.vimtool.response.HttpResponse;
+import xyz.vimtool.response.MarkCode;
 import xyz.vimtool.helper.JwtHelper;
 import xyz.vimtool.mapper.UserMapper;
 import xyz.vimtool.request.LoginReq;
 import xyz.vimtool.response.UserRes;
 
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,8 +44,34 @@ public class UserController extends BaseController {
     @Inject
     private UserMapper userMapper;
 
+    @Inject
+    private DefaultKaptcha defaultKaptcha;
+
+    @ApiOperation(value = "获取验证码图片")
+    @GetMapping("code")
+    public void getCodeImage(HttpServletRequest request, HttpServletResponse response) {
+        response.setDateHeader("Expires", 0);
+        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+        response.setHeader("Pragma", "no-cache");
+        response.setContentType("image/jpeg");
+
+        // 生成验证码
+        String capText = defaultKaptcha.createText();
+        request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+
+        // 向客户端写出生成的验证码图片
+        try (ServletOutputStream out = response.getOutputStream()) {
+            ImageIO.write(defaultKaptcha.createImage(capText), "jpg", out);
+            out.flush();
+        } catch (IOException e) {
+            ExceptionUtils.throwResponseException(MarkCode.build("验证码生成失败"));
+        }
+    }
+
     /**
      * 用户登录，请求参数中需要添加图形验证码，在外层校验
+     *
      * @param loginReq 登录请求body
      * @return 用户信息及token
      */

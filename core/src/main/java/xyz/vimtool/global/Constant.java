@@ -20,5 +20,8 @@ public class Constant {
         public static final String USER_ID = "user.current.id";
         public static final String USER_ROLES = "user.current.roles";
         public static final String SECRET = "io.jsonwebtoken.jjwt.0.9.1";
+
+        /** 验证码 */
+        public static final String CODE = "code";
     }
 }

@@ -8,8 +8,8 @@ import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.vimtool.commons.response.HttpCode;
-import xyz.vimtool.commons.response.HttpResponse;
+import xyz.vimtool.response.HttpCode;
+import xyz.vimtool.response.HttpResponse;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

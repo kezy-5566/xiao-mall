@@ -2,7 +2,7 @@ package xyz.vimtool.request;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import xyz.vimtool.commons.response.RegexUtils;
+import xyz.vimtool.response.RegexUtils;
 
 import javax.validation.constraints.Pattern;
 

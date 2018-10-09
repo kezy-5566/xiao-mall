@@ -1,4 +1,4 @@
-package xyz.vimtool.commons.response;
+package xyz.vimtool.response;
 
 /**
  * HTTP 错误码

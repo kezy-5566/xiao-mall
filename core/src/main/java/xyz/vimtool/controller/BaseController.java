@@ -3,8 +3,8 @@ package xyz.vimtool.controller;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.vimtool.bean.User;
-import xyz.vimtool.commons.response.HttpCode;
-import xyz.vimtool.commons.response.ResponseException;
+import xyz.vimtool.response.HttpCode;
+import xyz.vimtool.response.ResponseException;
 import xyz.vimtool.global.Constant;
 import xyz.vimtool.service.UserService;
 

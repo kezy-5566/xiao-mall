@@ -46,13 +46,14 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactory = new ShiroFilterFactoryBean();
         shiroFilterFactory.setSecurityManager(securityManager);
         Map<String, Filter> filters = shiroFilterFactory.getFilters();
+
+        // anon表示不校验,code表示登录验证码校验,auth表示登录状态校验
         filters.put("auth", new AuthFilter());
         filters.put("code", new CodeFilter());
 
         Map<String, String> filterMap = new LinkedHashMap<>();
+        filterMap.put("/sys/user/code", "anon");
         filterMap.put("/sys/user/login", "code,anon");
-        filterMap.put("/sys/auth/pwd", "anon");
-        filterMap.put("/sys/auth/sms", "anon");
 
         filterMap.put("/sys/**", "auth");
         filterMap.put("/wx/**", "auth");
