@@ -1,16 +1,16 @@
-package xyz.vimtool;
+package xyz.vimtool.global;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.stereotype.Component;
 import xyz.vimtool.bean.Permission;
 import xyz.vimtool.bean.Role;
 import xyz.vimtool.bean.User;
-import xyz.vimtool.global.Constant;
 import xyz.vimtool.service.PermissionService;
 import xyz.vimtool.service.RoleService;
 import xyz.vimtool.service.UserService;
@@ -23,15 +23,17 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * 初始化数据库
+ * 数据库初始化进程
  *
  * @author  zhangzheng
  * @version 1.0.0
- * @date    2018/9/26
+ * @date    2018/10/20
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Entry.class)
-public class InitDatabase {
+@Component
+@Order(value = 1)
+public class DataInitRunner implements CommandLineRunner {
+
+    private static final Logger log = LoggerFactory.getLogger(DataInitRunner.class);
 
     @Inject
     private PermissionService permissionService;
@@ -42,8 +44,17 @@ public class InitDatabase {
     @Inject
     private UserService userService;
 
-    @Test
-    public void init(){
+    @Override
+    public void run(String... args) {
+        if (Arrays.asList(args).contains(Constant.INIT_ARG)) {
+            if (log.isDebugEnabled()) {
+                log.debug(">>>>>>>>> 服务启动，执行初始化数据操作 <<<<<<<<<<<");
+            }
+            dataInit();
+        }
+    }
+
+    private void dataInit(){
         ClassPathResource resource = new ClassPathResource("database/permission.json");
         StringBuilder builder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(new File(resource.getURI())))) {

@@ -9,6 +9,9 @@ package xyz.vimtool.global;
  */
 public class Constant {
 
+    /** 初始化数据参数 */
+    public static final String INIT_ARG = "init";
+
     public static class Role {
 
         /** 角色 */
