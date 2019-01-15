@@ -18,6 +18,6 @@ spring:
 # druid alibaba database connection pool
 # ===================================================================
 druid:
-  url: jdbc:mysql://127.0.0.1:3306/xiao_mall_1.0.0?useUnicode=true&useSSL=false&characterEncoding=UTF-8
+  url: jdbc:mysql://127.0.0.1:3306/xiao_mall_1.0.0?useUnicode=true&serverTimezone=CTT&useSSL=false&characterEncoding=UTF-8
   username: root
   password: admin
