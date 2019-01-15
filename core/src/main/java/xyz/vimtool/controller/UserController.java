@@ -47,6 +47,9 @@ public class UserController extends BaseController {
     @Inject
     private DefaultKaptcha defaultKaptcha;
 
+    @Inject
+    private JwtHelper jwtHelper;
+
     @ApiOperation(value = "获取验证码图片")
     @GetMapping("code")
     public void getCodeImage(HttpServletRequest request, HttpServletResponse response) {
@@ -90,7 +93,7 @@ public class UserController extends BaseController {
         // 返回结果
         Set<String> roleNames = user.getRoles().stream().map(Role::getName).collect(Collectors.toSet());
         UserRes userRes = userMapper.toRes(user);
-        userRes.setToken(JwtHelper.buildToken(user.getId(), roleNames));
+        userRes.setToken(jwtHelper.buildToken(user.getId(), roleNames));
         return HttpResponse.buildSuccess(userRes);
     }
 

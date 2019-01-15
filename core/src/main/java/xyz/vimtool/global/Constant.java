@@ -18,10 +18,17 @@ public class Constant {
         public static final String NAME_ADMIN = "admin";
     }
 
+    public static class Redis {
+
+        /** 角色 */
+        public static final String TOKEN_KEY = "xiao:mall:token:key:";
+    }
+
     public static class User {
 
         public static final String USER_ID = "user.current.id";
         public static final String USER_ROLES = "user.current.roles";
+        public static final String USER_TABLE = "user";
         public static final String SECRET = "io.jsonwebtoken.jjwt.0.9.1";
 
         /** 验证码 */

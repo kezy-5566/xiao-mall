@@ -47,7 +47,7 @@ public class RedisHelper {
      * @param value   存储的值
      * @param timeout 过期时间(秒)
      */
-    public void set(String key, Object value, Long timeout) {
+    public void set(String key, Object value, long timeout) {
         set(key, value, timeout, TimeUnit.SECONDS);
     }
 
@@ -59,7 +59,7 @@ public class RedisHelper {
      * @param timeout  过期时间
      * @param timeUnit 时间单位
      */
-    public void set(String key, Object value, Long timeout, TimeUnit timeUnit) {
+    public void set(String key, Object value, long timeout, TimeUnit timeUnit) {
         ValueOperations operations = redisTemplate.opsForValue();
         operations.set(key, value, timeout, timeUnit);
     }
@@ -72,7 +72,7 @@ public class RedisHelper {
      * @param timeUnit 时间单位
      * @return boolean
      */
-    public boolean expire(String key, Long timeOut, TimeUnit timeUnit) {
+    public boolean expire(String key, long timeOut, TimeUnit timeUnit) {
         return redisTemplate.expire(key, timeOut, timeUnit);
     }
 
@@ -108,7 +108,7 @@ public class RedisHelper {
     public <T> T get(String key, Class<T> type) {
         ValueOperations ops = redisTemplate.opsForValue();
         Object o = ops.get(key);
-        return ((JSONObject) o).toJavaObject(type);
+        return o != null ? ((JSONObject) o).toJavaObject(type) : null;
     }
 
     /**
@@ -153,8 +153,8 @@ public class RedisHelper {
      * @return Object
      */
     public <T> T hashGet(String key, String field, Class<T> type) {
-        HashOperations operations = redisTemplate.opsForHash();
-        return ((JSONObject) operations.get(key, field)).toJavaObject(type);
+        Object o = redisTemplate.opsForHash().get(key, field);
+        return o != null ? ((JSONObject) o).toJavaObject(type) : null;
     }
 
     /**
