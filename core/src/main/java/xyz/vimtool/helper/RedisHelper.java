@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -108,7 +109,16 @@ public class RedisHelper {
     public <T> T get(String key, Class<T> type) {
         ValueOperations ops = redisTemplate.opsForValue();
         Object o = ops.get(key);
-        return o != null ? ((JSONObject) o).toJavaObject(type) : null;
+
+        if (Objects.isNull(o)) {
+            return null;
+        }
+
+        if (o instanceof JSONObject) {
+            return ((JSONObject) o).toJavaObject(type);
+        }
+
+        return (T) o;
     }
 
     /**
@@ -154,7 +164,16 @@ public class RedisHelper {
      */
     public <T> T hashGet(String key, String field, Class<T> type) {
         Object o = redisTemplate.opsForHash().get(key, field);
-        return o != null ? ((JSONObject) o).toJavaObject(type) : null;
+
+        if (Objects.isNull(o)) {
+            return null;
+        }
+
+        if (o instanceof JSONObject) {
+            return ((JSONObject) o).toJavaObject(type);
+        }
+
+        return (T) o;
     }
 
     /**
