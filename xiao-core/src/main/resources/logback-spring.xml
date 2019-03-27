@@ -52,16 +52,6 @@
 	<logger name="org.hibernate.tool.hbm2ddl" level="warn"/>
 	<logger name="springfox.documentation.spring.web.readers.operation" level="warn"/>
 
-	<!--<logger name="com.mihuier.mat.global.aspect.LogAspect" level="debug"/>-->
-
-	<!--开发环境:打印控制台和输出到文件-->
-	<springProfile name="dev">
-		<root level="debug">
-			<appender-ref ref="CONSOLE"/>
-			<appender-ref ref="FILE"/>
-		</root>
-	</springProfile>
-
 	<!--测试环境:打印控制台和输出到文件-->
 	<springProfile name="test">
 		<root level="debug">

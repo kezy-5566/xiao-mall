@@ -5,16 +5,18 @@
     <parent>
         <artifactId>xiao-mall</artifactId>
         <groupId>xyz.vimtool</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>entity</artifactId>
+    <artifactId>xiao-dao</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>xyz.vimtool</groupId>
-            <artifactId>commons</artifactId>
+            <artifactId>xiao-entity</artifactId>
         </dependency>
     </dependencies>
+
 </project>

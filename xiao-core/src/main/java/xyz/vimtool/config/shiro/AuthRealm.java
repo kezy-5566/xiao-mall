@@ -32,12 +32,15 @@ public class AuthRealm extends AuthorizingRealm {
     @Inject
     private RoleService roleService;
 
+    @Inject
+    private JwtHelper jwtHelper;
+
     /**
      * 认证(验证登录时调用)
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        Claims claims = JwtHelper.verifyToken(String.valueOf(token.getPrincipal()));
+        Claims claims = jwtHelper.verifyToken(String.valueOf(token.getPrincipal()));
 
         // 返回登录失败
         if (claims == null) {

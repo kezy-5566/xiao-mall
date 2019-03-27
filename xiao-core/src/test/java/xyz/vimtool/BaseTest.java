@@ -12,6 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @date    2018/10/20
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Entry.class)
+@SpringBootTest(classes = XiaoMallApplication.class)
 public class BaseTest {
 }
